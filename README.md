@@ -1,9 +1,9 @@
 # Credit Card Processor
 
 ### Usage Instructions
-Please run the following in your terminal to install required gems:
-gem install rspec
-gem install luhn-ruby
+Please run the following in your terminal to install required gems:  
+gem install rspec  
+gem install luhn-ruby  
 
 To run the tests, navigate to this directory in terminal and run 'rake'. This will run the rspec tests provided in /spec.
 
