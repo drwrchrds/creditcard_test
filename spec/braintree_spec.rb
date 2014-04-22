@@ -59,11 +59,28 @@ describe 'Processor' do
   end
   
   describe 'Credit' do
-    it 'decreases the balance of associated card by the amount specified'
+    before(:each) do
+      processor.add("Quincy", "5454545454545454", "$3000")
+      processor.charge("Quincy", "$500")
+    end
     
-    it 'creates a negative balance if balance is dropped below 0'
+    it 'decreases the balance of associated card by the amount specified' do
+      processor.credit("Quincy", "$50")
+      expect(processor.cards["Quincy"].balance).to eq("$450")
+    end
     
-    it 'ignores credits against Luhn 10 invalid cards'
+    it 'creates a negative balance if balance is dropped below 0' do
+      processor.credit("Quincy", "$550")
+      expect(processor.cards["Quincy"].balance).to eq("$-50")
+    end
+    
+    it 'ignores credits against Luhn 10 invalid cards' do
+      processor.add("Invalidia", "1234567890123456", "$2000")
+      processor.credit("Invalidia", "$400")
+      invalidia = processor.cards["Invalidia"]
+      
+      expect(invalidia.instance_variable_get("@balance")).to equal(0)
+    end
   end
   
   describe 'Summary' do
