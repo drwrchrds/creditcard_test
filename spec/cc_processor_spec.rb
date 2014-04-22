@@ -1,6 +1,6 @@
 require 'rspec'
 require_relative 'spec_helper'
-require 'braintree'
+require 'cc_processor'
 
 describe 'Card' do 
   let(:valid_card) { Card.new("Validia", "5454545454545454", "$3000") }

@@ -1,4 +1,4 @@
-require_relative 'lib/braintree.rb'
+require_relative 'lib/cc_processor.rb'
 
 processor = Processor.new
 
